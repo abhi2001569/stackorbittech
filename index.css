@@ -337,25 +337,25 @@ html, body {
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
+
+/* Mobile Devices (iPhone, Android phones) */
+@media (max-width: 600px) {
     .navbar {
         flex-direction: column;
-        align-items: flex-start;
-        padding: 15px 30px;
+        padding: 15px 10px;
         background-color: rgba(0, 0, 0, 0.7);
-        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+        width: 100%;
     }
 
     .navbarleft img {
-        width: 120px;
-        height: auto;
+        width: 80%;
         margin-bottom: 15px;
     }
 
     .navbarright ul {
         flex-direction: column;
-        gap: 15px;
         width: 100%;
+        gap: 10px;
     }
 
     .navbarright ul li a {
@@ -366,15 +366,15 @@ html, body {
     }
 
     .projects, .course-section, .technologies, .footer {
-        padding: 30px 20px;
-        margin: 20px;
+        padding: 30px 10px;
+        margin: 20px 0;
     }
 
     .project-card {
         width: 100%;
-        padding: 15px;
         margin: 10px 0;
-        max-width: none; /* Remove max-width constraint */
+        padding: 15px;
+        max-width: none;
     }
 
     .video-frame {
@@ -384,10 +384,11 @@ html, body {
     .course-card {
         flex-direction: column;
         align-items: center;
+        padding: 15px;
     }
 
     .course-image img {
-        width: 80%;
+        width: 90%;
     }
 
     .course-content {
@@ -408,16 +409,50 @@ html, body {
     .footer-container {
         flex-direction: column;
         align-items: center;
-        text-align: center;
     }
 
     .footer-left,
     .footer-center,
     .footer-right {
         width: 100%;
+        text-align: center;
     }
 
     .social-icons a {
-        margin: 0 10px;
+        margin: 0 8px;
+    }
+}
+
+/* Extra Small Mobile (Below 400px, Older Phones) */
+@media (max-width: 400px) {
+    .navbarleft img {
+        width: 70%;
+        margin-bottom: 10px;
+    }
+
+    .projects h2 {
+        font-size: 24px;
+    }
+
+    .project-card {
+        padding: 10px;
+    }
+
+    .course-content h3 {
+        font-size: 18px;
+    }
+
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-center, .footer-left, .footer-right {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    .footer-bottom {
+        font-size: 11px;
     }
 }
