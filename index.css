@@ -254,6 +254,8 @@ html, body {
     width: 50px;
     height: 50px;
     margin-bottom: 10px;
+    object-fit: cover;
+
 }
 
 .tech-card p {
