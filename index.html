@@ -4,26 +4,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>StackOrbit Projects</title>
-    <link
-    href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
-    rel="stylesheet"
-/>
-    <link rel="stylesheet" href="index.css">
-    <script>
-        // 🔥 Your Firebase Config - Replace with your own
-        const firebaseConfig = {
-            apiKey: "AIzaSyA4SVm3Ixok--nb5KNzIxFuLRtKa2VcLPg",
-            authDomain: "stack-orbit-tech.firebaseapp.com",
-            projectId: "stack-orbit-tech",
-            storageBucket: "stack-orbit-tech.firebasestorage.app",
-            messagingSenderId: "804109770425",
-            appId: "1:804109770425:web:24c9b523b6c402dfb30568",
-            measurementId: "G-T38Y25CNQ0"
-        };
-    
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-      </script>
+     <!-- Remix Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet"/>
+
+  <!-- Your Styles -->
+  <link rel="stylesheet" href="index.css" />
+
+  <!-- Firebase SDKs -->
+  <script type="module">
+    // Import Firebase SDKs
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+    import { getDatabase, ref, onValue, runTransaction } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js";
+
+    // Your Firebase Config
+    const firebaseConfig = {
+      apiKey: "AIzaSyA4SVm3Ixok--nb5KNzIxFuLRtKa2VcLPg",
+      authDomain: "stack-orbit-tech.firebaseapp.com",
+      databaseURL: "https://stack-orbit-tech-default-rtdb.firebaseio.com",
+      projectId: "stack-orbit-tech",
+      storageBucket: "stack-orbit-tech.appspot.com",
+      messagingSenderId: "804109770425",
+      appId: "1:804109770425:web:24c9b523b6c402dfb30568",
+      measurementId: "G-T38Y25CNQ0"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+    const counterRef = ref(db, 'visitorCount');
+
+    // Increment count
+    runTransaction(counterRef, current => (current || 0) + 1);
+
+    // Display count
+    onValue(counterRef, snapshot => {
+      const count = snapshot.val();
+      const el = document.getElementById("visitor-count");
+      if (el) el.textContent = `👁️ Visitors: ${count}`;
+    });
+  </script>
 </head>
 <body>
     <div class="main">
@@ -189,27 +208,11 @@
     <!-- ✅ Visitor Count Here -->
     <div class="footer-bottom">
         <p id="visitor-count">👁️ Visitors: ...</p>
+        <div id="visitor-count" style="padding: 1rem; font-size: 18px; font-weight: bold;"></div>
         <p>© 2025 StackOrbit. All Rights Reserved.</p>
     </div>
 </footer>
 
-<!-- Firebase Visitor Count Script -->
-<script>
-    const db = firebase.database();
-    const counterRef = db.ref("visitorCount");
-
-    // Increase counter by 1 for each visit
-    counterRef.transaction(current => (current || 0) + 1);
-
-    // Show updated count on page
-    counterRef.on("value", snapshot => {
-        const count = snapshot.val();
-        const counterElement = document.getElementById("visitor-count");
-        if (counterElement) {
-            counterElement.textContent = `👁️ Visitors: ${count}`;
-        }
-    });
-</script>
 
 </body>
 </html>
