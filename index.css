@@ -253,10 +253,10 @@ html, body {
 }
 
 .tech-card img {
-    width: 50px;
-    height: 50px;
+    width: 80px;
+    height: 80px;
     margin-bottom: 10px;
-    object-fit: cover;
+    object-fit: contain;
 }
 
 .tech-card p {
@@ -339,10 +339,10 @@ html, body {
 /* Responsive Design */
 @media (max-width: 768px) {
     .navbar {
+        display: flex;
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
         padding: 15px 30px;
-        background-color: rgba(0, 0, 0, 0.7);
         box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
     }
 
@@ -353,9 +353,12 @@ html, body {
     }
 
     .navbarright ul {
-        flex-direction: column;
         gap: 15px;
         width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
     }
 
     .navbarright ul li a {
@@ -382,6 +385,8 @@ html, body {
     }
 
     .course-card {
+        width: auto;
+        padding: 20px;
         flex-direction: column;
         align-items: center;
     }
@@ -391,8 +396,9 @@ html, body {
     }
 
     .course-content {
-        width: 100%;
-        text-align: center;
+        width: auto;
+        text-align: left;
+        padding: 10px;
     }
 
     .tech-card {
