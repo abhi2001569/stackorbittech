@@ -9,6 +9,21 @@
     rel="stylesheet"
 />
     <link rel="stylesheet" href="index.css">
+    <script>
+        // 🔥 Your Firebase Config - Replace with your own
+        const firebaseConfig = {
+            apiKey: "AIzaSyA4SVm3Ixok--nb5KNzIxFuLRtKa2VcLPg",
+            authDomain: "stack-orbit-tech.firebaseapp.com",
+            projectId: "stack-orbit-tech",
+            storageBucket: "stack-orbit-tech.firebasestorage.app",
+            messagingSenderId: "804109770425",
+            appId: "1:804109770425:web:24c9b523b6c402dfb30568",
+            measurementId: "G-T38Y25CNQ0"
+        };
+    
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+      </script>
 </head>
 <body>
     <div class="main">
@@ -19,7 +34,7 @@
             </div>
             <div class="navbarright">
                 <ul>
-                    <li><a href="#projectpaid"><i class="ri-file-code-line"></i> Paid Project</a></li>
+                    <li><a href="#projectpaid"><i class="ri-file-code-line"></i> Paid Projects</a></li>
                     <li><a href="#cource"><i class="ri-presentation-line"></i> Live Course </a></li>
                     <li><a href="#technologies">Technologies</a></li>
                     <li><a href="#">Contact</a></li>
@@ -148,7 +163,7 @@
     </div>
 </section>
 
-        <!-- Footer -->
+   <!-- Footer -->
 <footer class="footer">
     <div class="footer-container">
         <div class="footer-left">
@@ -163,17 +178,38 @@
         <div class="footer-right">
             <h4>Follow Us</h4>
             <div class="social-icons">
-                <a href="https://www.instagram.com/stac.korbit/"><i class="ri-instagram-line"></i></a>                
-                <a href="https://www.youtube.com/@stackorbit-o1j"><i class="ri-youtube-line"></i></a>
+                <a href="#"><i class="ri-instagram-line"></i></a>
+                <a href="#"><i class="ri-linkedin-box-line"></i></a>
+                <a href="#"><i class="ri-github-line"></i></a>
+                <a href="#"><i class="ri-youtube-line"></i></a>
             </div>
         </div>
     </div>
+
+    <!-- ✅ Visitor Count Here -->
     <div class="footer-bottom">
+        <p id="visitor-count">👁️ Visitors: ...</p>
         <p>© 2025 StackOrbit. All Rights Reserved.</p>
     </div>
 </footer>
 
-    </div>
+<!-- Firebase Visitor Count Script -->
+<script>
+    const db = firebase.database();
+    const counterRef = db.ref("visitorCount");
+
+    // Increase counter by 1 for each visit
+    counterRef.transaction(current => (current || 0) + 1);
+
+    // Show updated count on page
+    counterRef.on("value", snapshot => {
+        const count = snapshot.val();
+        const counterElement = document.getElementById("visitor-count");
+        if (counterElement) {
+            counterElement.textContent = `👁️ Visitors: ${count}`;
+        }
+    });
+</script>
 
 </body>
 </html>
